@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -10,7 +8,7 @@ module.exports = {
     filename: './app.js'
   },
   devServer: {
-    port: process.env.PORT || 3000,
+    port: 5000,
     contentBase: './public'
   },
   resolve: {
