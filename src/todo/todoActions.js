@@ -23,3 +23,24 @@ export const add = description => {
       .then(res => dispatch(search()))
   }
 }
+
+export const markAsDone = todo => {
+  return dispatch => {
+    axios.put(`${URL}/${todo._id}`, { ...todo, done: true })
+      .then(res => dispatch(search()))
+  }
+}
+
+export const markAsPending = todo => {
+  return dispatch => {
+    axios.put(`${URL}/${todo._id}`, { ...todo, done: false })
+      .then(res => dispatch(search()))
+  }
+}
+
+export const remove = todo => {
+  return dispatch => {
+    axios.delete(`${URL}/${todo._id}`)
+      .then(res => dispatch(search()))
+  }
+}
