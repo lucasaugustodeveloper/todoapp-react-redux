@@ -7,7 +7,8 @@ import Button from '../templates/button/button'
 
 import {
   changeDescription,
-  search
+  search,
+  add
 } from './todoActions'
 
 class todoForm extends Component {
@@ -22,14 +23,18 @@ class todoForm extends Component {
   }
 
   keyHandler() {
+    const { add, search, description } = this.props
+
     if (e.key === 'Enter') {
-      e.shiftKey ? this.props.handleSearch() : this.props.handleAdd()
+      e.shiftKey ? search() : add(description)
     } else if (e.key === 'Escape') {
       this.props.handleClear()
     }
   }
 
   render() {
+    const { add, search, description } = this.props
+
     return (
       <div className='todoForm'>
         <div className='todoForm_task row' role='form'>
@@ -50,13 +55,13 @@ class todoForm extends Component {
                 style='primary'
                 icon='plus'
                 css='btn-lg'
-                onClick={ this.props.handleAdd }
+                onClick={ () => add(description) }
               />
               <Button
                 style='default'
                 icon='search'
                 css='btn-lg'
-                onClick={ this.props.handleSearch }
+                onClick={ () => search() }
                 />
               <Button
                 style='default'
@@ -74,6 +79,6 @@ class todoForm extends Component {
 
 const mapStateToProps = state => ({ description: state.todo.description })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ changeDescription, search }, dispatch)
+  bindActionCreators({ changeDescription, search, add }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(todoForm)
