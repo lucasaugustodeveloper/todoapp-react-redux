@@ -4,7 +4,6 @@ import Button from '../templates/button/button'
 
 export default props => {
   const keyHandler = (e) => {
-    console.log(e.keyCode)
     if (e.key === 'Enter') {
       e.shiftKey ? props.handleSearch() : props.handleAdd()
     } else if (e.key === 'Escape') {
