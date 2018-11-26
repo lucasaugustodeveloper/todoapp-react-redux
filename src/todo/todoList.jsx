@@ -1,10 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Grid from '../templates/grid/grid'
 import Button from '../templates/button/button'
 import './todoList.css'
 
-export default props => {
+const todoList =  props => {
   const renderRows = () => {
     const list = props.list || []
 
@@ -38,3 +39,7 @@ export default props => {
     </Grid>
   )
 }
+
+const mapStateToProps = state => ({ list: state.todo.list })
+
+export default connect(mapStateToProps)(todoList)
